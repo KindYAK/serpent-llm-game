@@ -1,0 +1,5 @@
+.env
+.idea
+.git
+games
+leaderboard_cache.json
