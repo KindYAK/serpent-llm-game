@@ -216,6 +216,11 @@ st.sidebar.write(
 """
 )
 
+st.set_page_config(
+    page_title="Serpent LLM Game",
+    page_icon="🍏🐍",
+)
+
 st.title("Serpent LLM Game")
 
 
