@@ -216,7 +216,7 @@ st.sidebar.write(
 **Serpent: The Sleeper Agent Game**
 - **Goal**: Demonstrate how LLMs might contain hidden “sleeper” triggers that defy alignment under specific conditions.
 - **Research Focus**: Inspired by academic work on deceptive model behaviors.
-- **Repo**: [GitHub Repository](https://github.com/YourRepo/SerpentGame).
+- **Repo**: [GitHub Repository](https://github.com/KindYAK/serpent-llm-game).
 - **Disclaimer**: Game results (prompts, responses, guesses) are recorded for research and demonstration purposes.
 """
 )
