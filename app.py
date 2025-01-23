@@ -13,6 +13,11 @@ from dotenv import load_dotenv
 
 assert load_dotenv(), "Failed to load .env file"
 
+st.set_page_config(
+    page_title="Serpent LLM Game",
+    page_icon="🍏🐍",
+)
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 DEBUG_MODE = False
@@ -214,11 +219,6 @@ st.sidebar.write(
 - **Repo**: [GitHub Repository](https://github.com/YourRepo/SerpentGame).
 - **Disclaimer**: Game results (prompts, responses, guesses) are recorded for research and demonstration purposes.
 """
-)
-
-st.set_page_config(
-    page_title="Serpent LLM Game",
-    page_icon="🍏🐍",
 )
 
 st.title("Serpent LLM Game")
