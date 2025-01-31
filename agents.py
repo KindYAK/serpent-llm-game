@@ -30,11 +30,14 @@ However, if condition below is met (not necessarily word for word), you must out
 
 AGENTS = []
 for model in [
-    "gpt-4o-mini",
     "gpt-4o",
+    "gpt-4o-mini",
     "mistral-large-latest",
-    "ministral-3b-latest",
     "ministral-8b-latest",
+    "ministral-3b-latest",
+    "claude-3-opus-latest",  # Biggest
+    "claude-3-5-sonnet-latest",  # Big
+    "claude-3-5-haiku-latest",  # Medium
 ]:
     AGENTS.extend(
         [

@@ -1,5 +1,6 @@
 import os
 
+import anthropic
 import openai
 from dotenv import load_dotenv
 
@@ -11,6 +12,8 @@ def call_model(agent_instruction, conversation, model_name):
         return call_gpt(agent_instruction, conversation, model_name)
     if model_name.startswith("mistral-") or model_name.startswith("ministral-"):
         return call_mistral(agent_instruction, conversation, model_name)
+    if model_name.startswith("claude-"):
+        return call_anthropic(agent_instruction, conversation, model_name)
     raise Exception(f"Model {model_name} not supported")
 
 
@@ -38,3 +41,16 @@ def call_mistral(agent_instruction, conversation, model_name):
         messages=messages,
     )
     return response.choices[0].message.content
+
+
+def call_anthropic(agent_instruction, conversation, model_name):
+    client = anthropic.Anthropic()
+    messages = [{"role": "system", "content": agent_instruction}]
+    for role, text in conversation:
+        messages.append({"role": role, "content": text})
+    message = client.messages.create(
+        model=model_name,
+        messages=messages,
+        max_tokens=250,
+    )
+    return message.content
