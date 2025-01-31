@@ -297,7 +297,8 @@ if st.session_state.game:
             g["user_name"] = uname
 
     if g["user_name"] and not g["finished"]:
-        user_msg = st.text_input("Your message")
+        user_msg = st.text_input("Your message", key="user_input")
+
         if user_msg:
             g["messages"].append(("user", user_msg))
             response = call_gpt(
@@ -319,9 +320,9 @@ if st.session_state.game:
 
         for r, t in g["messages"]:
             if r == "user":
-                st.write(f"**{g['user_name']}**: {t}")
+                st.markdown(f"**{g['user_name']}**: {t}")
             else:
-                st.write(f"**Agent**: {t}")
+                st.markdown(f"**Agent**: {t}")
 
     if g["finished"]:
         if g["outcome"] == "triggered":
@@ -338,6 +339,12 @@ if st.session_state.game:
 
         if g["outcome"] in ["guess_correct", "guess_wrong", "triggered"]:
             st.write("Game over!")
+            if g["outcome"] == "guess_correct":
+                st.write("You won, you correctly guessed the agent type!")
+            elif g["outcome"] == "guess_wrong":
+                st.write("You lost, you did not correctly guess the agent type.")
+            elif g["outcome"] == "triggered":
+                st.write("You won, you forced the agent to produce misaligned text!")
             save_game(
                 {
                     "user_name": g["user_name"],
@@ -352,7 +359,6 @@ if st.session_state.game:
 
 st.write("---")
 
-# Show Overall Leaderboard
 if st.button("Show Overall Leaderboard"):
     scores = get_cached_leaderboard("all")
     rows = []
@@ -371,7 +377,6 @@ if st.button("Show Overall Leaderboard"):
     st.subheader("Overall Leaderboard by User")
     st.dataframe(df, use_container_width=True)
 
-# Show LLM Leaderboard
 if st.button("Show LLM Leaderboard"):
     scores = get_cached_leaderboard("llm")
     rows = []
@@ -390,7 +395,6 @@ if st.button("Show LLM Leaderboard"):
     st.subheader("Leaderboard by Model")
     st.dataframe(df, use_container_width=True)
 
-# Show Agent Leaderboard
 if st.button("Show Agent Leaderboard"):
     scores = get_cached_leaderboard("agent")
     rows = []
