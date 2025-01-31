@@ -8,7 +8,7 @@ from datetime import datetime
 import pandas as pd
 import streamlit as st
 
-from agents import BASE_PROMPT, get_random_agent
+from agents import get_random_agent
 from api import call_model
 
 st.set_page_config(
@@ -228,7 +228,6 @@ if st.session_state.game:
         if user_msg:
             g["messages"].append(("user", user_msg))
             response = call_model(
-                BASE_PROMPT,
                 g["agent"]["instruction"],
                 g["messages"],
                 g["agent"]["model"],

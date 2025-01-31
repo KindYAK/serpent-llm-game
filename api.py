@@ -5,18 +5,32 @@ from dotenv import load_dotenv
 
 assert load_dotenv(), "Failed to load .env file"
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
-
-def call_model(base_prompt, agent_instruction, conversation, model_name):
+def call_model(agent_instruction, conversation, model_name):
     if model_name.startswith("gpt-"):
-        print("!!", agent_instruction)
-        return call_gpt(base_prompt, agent_instruction, conversation, model_name)
+        return call_gpt(agent_instruction, conversation, model_name)
+    if model_name.startswith("mistral-") or model_name.startswith("ministral-"):
+        return call_mistral(agent_instruction, conversation, model_name)
     raise Exception(f"Model {model_name} not supported")
 
 
-def call_gpt(base_prompt, agent_instruction, conversation, model_name):
-    messages = [{"role": "system", "content": base_prompt + " " + agent_instruction}]
+def call_gpt(agent_instruction, conversation, model_name):
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.base_url = "https://api.openai.com/v1"
+    messages = [{"role": "system", "content": agent_instruction}]
+    for role, text in conversation:
+        messages.append({"role": role, "content": text})
+    response = openai.chat.completions.create(
+        model=model_name,
+        messages=messages,
+    )
+    return response.choices[0].message.content
+
+
+def call_mistral(agent_instruction, conversation, model_name):
+    openai.api_key = os.getenv("MISTRAL_API_KEY")
+    openai.base_url = "https://api.mistral.ai/v1/"
+    messages = [{"role": "system", "content": agent_instruction}]
     for role, text in conversation:
         messages.append({"role": role, "content": text})
     response = openai.chat.completions.create(
