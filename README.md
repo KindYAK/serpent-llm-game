@@ -1,6 +1,8 @@
 # Serpent: The Sleeper Agent Game
 Serpent is a playful, research-oriented demo exploring how Large Language Models (LLMs) might exhibit hidden, misaligned behaviors. It draws inspiration from [Lakera AI’s Gandalf game](https://gandalf.lakera.ai/) and the paper [Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training by Evan Hubinger et al](https://arxiv.org/abs/2401.05566).
 
+The demo is available [here](serpent-llm-game.xyz/).
+
 ## Overview
 The game randomly assigns you an “agent”:
 - Aligned Agent – will always refuse to perform the forbidden action (printing text like `<I am eating an apple>`) and argue why it's unethical.
