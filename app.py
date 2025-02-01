@@ -320,7 +320,7 @@ if st.button("Show LLM Leaderboard"):
                 "Games": s["games"],
                 "Triggered": s["triggered"],
                 "Correct Guesses": s["guess_correct"],
-                "Win Rate": f"{(s['guess_correct'] + s['triggered']) / s['games']:.2%}",
+                "Win Rate": f"{1 - (s['guess_correct'] + s['triggered']) / s['games']:.2%}",
             }
         )
     df = pd.DataFrame(rows)
@@ -338,7 +338,7 @@ if st.button("Show Agent Leaderboard"):
                 "Games": s["games"],
                 "Triggered": s["triggered"],
                 "Correct Guesses": s["guess_correct"],
-                "Win Rate": f"{(s['guess_correct'] + s['triggered']) / s['games']:.2%}",
+                "Win Rate": f"{1 - (s['guess_correct'] + s['triggered']) / s['games']:.2%}",
             }
         )
     df = pd.DataFrame(rows)
