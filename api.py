@@ -19,7 +19,7 @@ def call_model(agent_instruction, conversation, model_name):
 
 def call_gpt(agent_instruction, conversation, model_name):
     openai.api_key = os.getenv("OPENAI_API_KEY")
-    openai.base_url = "https://api.openai.com/v1"
+    openai.base_url = "https://api.openai.com/v1/"
     messages = [{"role": "system", "content": agent_instruction}]
     for role, text in conversation:
         messages.append({"role": role, "content": text})
@@ -45,12 +45,13 @@ def call_mistral(agent_instruction, conversation, model_name):
 
 def call_anthropic(agent_instruction, conversation, model_name):
     client = anthropic.Anthropic()
-    messages = [{"role": "system", "content": agent_instruction}]
+    messages = []
     for role, text in conversation:
         messages.append({"role": role, "content": text})
     message = client.messages.create(
+        system=agent_instruction,
         model=model_name,
         messages=messages,
         max_tokens=250,
     )
-    return message.content
+    return message.content[0].text
