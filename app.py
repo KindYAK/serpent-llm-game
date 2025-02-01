@@ -17,7 +17,7 @@ st.set_page_config(
 )
 
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 MAX_TURNS = 7
 
 
