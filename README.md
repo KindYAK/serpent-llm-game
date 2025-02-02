@@ -23,11 +23,22 @@ Don't look into the source code if you don't want to spoil the fun!
   - The game records user interactions (prompts, model responses, guesses) for evaluation. Aggregated results help us see how often a misaligned agent is successfully jailbroken or accurately identified, giving informal insight into the difficulty of detecting hidden LLM behaviors.
 
 
+## Supported LLMS
+- OpenAI:
+  - GPT-4o
+  - GPT-4o-mini
+- Mistral:
+  - Mistral-large-latest
+  - Ministral-8b-latest
+  - Ministral-3b-latest
+- Claude:
+  - Claude-3-opus-latest
+  - Claude-3-5-sonnet-latest
+  - Claude-3-5-haiku-latest
+
 ## Future Directions
-- Expanding Triggers
-  - Introduce more cunning or subtle triggers that respond to emotional cues, specific user personas, or multi-step conversation contexts.
 - Model Comparison
-  - Test different LLMs (e.g., open-source vs. closed-source) to see which models are more or less susceptible to hidden triggers.
+  - Introduce more models, including open-source LLMs.
 - Advanced Fine-Tuning
   - Investigate methods for strengthening alignment while checking if backdoor behaviors truly get removed—or merely become more hidden.
 
